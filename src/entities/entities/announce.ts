@@ -15,10 +15,11 @@ import { Fuel } from "./fuel";
 import { Color } from "./color";
 import { Gallery } from "./galery";
 import { Comment } from "./comment";
-
+import { Exclude } from "class-transformer";
 @Entity()
 export class Announce {
   @PrimaryGeneratedColumn()
+  @Exclude()
   id: number;
 
   @Column({ nullable: false })

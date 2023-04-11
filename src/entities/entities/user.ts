@@ -5,10 +5,14 @@ import {
   OneToOne,
   OneToMany,
   JoinColumn,
+  BeforeInsert,
 } from "typeorm";
 import { Address } from "./address";
 import { Announce } from "./announce";
 import { Comment } from "./comment";
+
+import { Exclude } from "class-transformer";
+import { getRounds, hashSync } from "bcryptjs";
 
 @Entity()
 export class User {
@@ -22,6 +26,7 @@ export class User {
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @Column()
@@ -48,4 +53,12 @@ export class User {
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
+
+  @BeforeInsert()
+  hashPassword() {
+    const isEncrypted = getRounds(this.password);
+    if (!isEncrypted) {
+      this.password = hashSync(this.password, 10);
+    }
+  }
 }
