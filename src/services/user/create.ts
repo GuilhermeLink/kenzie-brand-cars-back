@@ -1,12 +1,12 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/entities/user";
 import { AppError } from "../../errors/appError";
-import { iUserRegister } from "../../interfaces/user";
+import { iUserRequest } from "../../interfaces/user";
 import { instanceToPlain } from "class-transformer";
 
 export async function createUserService(
-  data: iUserRegister
-): Promise<iUserRegister> {
+  data: iUserRequest
+): Promise<iUserRequest> {
   const userRep = AppDataSource.getRepository(User);
   const { email } = data;
 
@@ -16,6 +16,6 @@ export async function createUserService(
   const user = userRep.create(data);
   await userRep.save(user);
 
-  const plainUser = instanceToPlain(user) as iUserRegister;
+  const plainUser = instanceToPlain(user) as iUserRequest;
   return plainUser;
 }

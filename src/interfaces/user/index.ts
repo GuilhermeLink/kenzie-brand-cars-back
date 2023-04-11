@@ -1,4 +1,6 @@
-export interface iUserRegister {
+import { IAnnounceRequest, iComment } from "../announce";
+
+export interface iUserRequest {
   name: string;
   email: string;
   password: string;
@@ -9,6 +11,9 @@ export interface iUserRegister {
   type: string;
   admin?: boolean;
   address: iAddress;
+
+  announces?: IAnnounceRequest[];
+  comments?: iComment[];
 }
 
 export interface iAddress {
@@ -19,6 +24,7 @@ export interface iAddress {
   city: string;
   state: string;
   zipCode: string;
+  user?: iUserRequest;
 }
 
 export interface iUserLogin {
