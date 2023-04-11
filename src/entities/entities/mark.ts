@@ -1,9 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Announce } from "./announce";
-
+import { Exclude } from "class-transformer";
 @Entity()
 export class Mark {
   @PrimaryGeneratedColumn()
+  @Exclude()
   id: number;
 
   @Column()

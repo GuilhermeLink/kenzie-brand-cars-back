@@ -1,13 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
 import { User } from "./user";
-
+import { Exclude } from "class-transformer";
 @Entity()
 export class Address {
   @PrimaryGeneratedColumn()
+  @Exclude()
   id: number;
-
-  @Column()
-  country: string;
 
   @Column()
   state: string;
@@ -22,9 +20,9 @@ export class Address {
   street: string;
 
   @Column()
-  number: string;
+  number: number;
 
-  @Column()
+  @Column({ nullable: true })
   complement: string;
 
   @Column()

@@ -12,7 +12,7 @@ import { Fuel } from "./entities/entities/fuel";
 import { Gallery } from "./entities/entities/galery";
 import { Mark } from "./entities/entities/mark";
 import { Model } from "./entities/entities/model";
-import { Initial1681183432066 } from "./migrations/1681183432066-initial";
+import { UpdatedAdress1681236399486 } from "./migrations/1681236399486-updated_adress";
 
 const dataSourceConfig = (): DataSourceOptions => {
   return {
@@ -34,7 +34,7 @@ const dataSourceConfig = (): DataSourceOptions => {
       Mark,
       Model,
     ],
-    migrations: [Initial1681183432066],
+    migrations: [UpdatedAdress1681236399486],
     synchronize: false,
   };
 };
