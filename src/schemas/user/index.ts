@@ -27,7 +27,10 @@ export const schemaCreateAccount = yup.object().shape({
     .string()
     .min(10, "Description must be at least 10 characters")
     .required("Description is required"),
-  type: yup.string().required("Type is required"),
+  type: yup
+    .string()
+    .required("Type is required")
+    .oneOf(["buyer", "seller"], "Type must be either 'buyer' or 'seller'"),
   admin: yup.boolean(),
   address: yup.object().shape({
     street: yup.string().required("Street is required"),
