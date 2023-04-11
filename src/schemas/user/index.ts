@@ -28,6 +28,7 @@ export const schemaCreateAccount = yup.object().shape({
     .min(10, "Description must be at least 10 characters")
     .required("Description is required"),
   type: yup.string().required("Type is required"),
+  admin: yup.boolean(),
   address: yup.object().shape({
     street: yup.string().required("Street is required"),
     number: yup
@@ -46,4 +47,15 @@ export const schemaCreateAccount = yup.object().shape({
       .length(5, "Zip code must be 5 characters")
       .required("Zip code is required"),
   }),
+});
+
+export const schemaLogin = yup.object().shape({
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  password: yup
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
 });

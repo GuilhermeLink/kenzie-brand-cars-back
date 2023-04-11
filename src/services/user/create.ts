@@ -11,9 +11,7 @@ export async function createUserService(
   const { email } = data;
 
   const existingUser = await userRep.findOne({ where: { email } });
-  if (existingUser) {
-    throw new AppError("Email already exists!", 409);
-  }
+  if (existingUser) throw new AppError("Email already exists!", 409);
 
   const user = userRep.create(data);
   await userRep.save(user);

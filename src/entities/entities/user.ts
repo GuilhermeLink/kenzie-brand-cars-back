@@ -44,6 +44,9 @@ export class User {
   @Column()
   type: string;
 
+  @Column({ default: false })
+  admin: boolean;
+
   @OneToOne(() => Address, (address) => address.user, { cascade: true })
   @JoinColumn()
   address: Address;
