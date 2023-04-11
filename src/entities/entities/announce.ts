@@ -65,13 +65,13 @@ export class Announce {
   @OneToMany(() => Comment, (comment) => comment.announce)
   comments: Comment[];
 
-  @Column()
+  @Column({ default: () => "CURRENT_TIMESTAMP" })
   createdAt: Date;
 
-  @Column()
+  @Column({ default: () => "CURRENT_TIMESTAMP" })
   updatedAt: Date;
 
-  @Column()
+  @Column({ nullable: true })
   deletedAt: Date;
 
   @Column({ default: true })
