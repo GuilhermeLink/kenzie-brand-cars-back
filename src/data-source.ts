@@ -12,7 +12,6 @@ import { Fuel } from "./entities/entities/fuel";
 import { Gallery } from "./entities/entities/galery";
 import { Mark } from "./entities/entities/mark";
 import { Model } from "./entities/entities/model";
-import { UpdateAnnounce1681242088305 } from "./1681242088305-update_announce";
 
 const dataSourceConfig = (): DataSourceOptions => {
   return {
@@ -34,7 +33,7 @@ const dataSourceConfig = (): DataSourceOptions => {
       Mark,
       Model,
     ],
-    migrations: [UpdateAnnounce1681242088305],
+    migrations: ["src/migrations/*.ts"],
     synchronize: false,
   };
 };
