@@ -12,7 +12,7 @@ import { Fuel } from "./entities/entities/fuel";
 import { Gallery } from "./entities/entities/galery";
 import { Mark } from "./entities/entities/mark";
 import { Model } from "./entities/entities/model";
-import { UpdatedAdress1681236399486 } from "./migrations/1681236399486-updated_adress";
+import { AddAdminInUser1681237517744 } from "./migrations/1681237517744-add_admin_in_user";
 
 const dataSourceConfig = (): DataSourceOptions => {
   return {
@@ -34,7 +34,7 @@ const dataSourceConfig = (): DataSourceOptions => {
       Mark,
       Model,
     ],
-    migrations: [UpdatedAdress1681236399486],
+    migrations: [AddAdminInUser1681237517744],
     synchronize: false,
   };
 };

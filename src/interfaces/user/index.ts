@@ -7,6 +7,7 @@ export interface iUserRegister {
   birthDate: Date;
   description: string;
   type: string;
+  admin?: boolean;
   address: iAddress;
 }
 
@@ -18,4 +19,9 @@ export interface iAddress {
   city: string;
   state: string;
   zipCode: string;
+}
+
+export interface iUserLogin {
+  email: string;
+  password: string;
 }
