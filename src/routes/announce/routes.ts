@@ -8,6 +8,7 @@ import {
 } from "../../schemas/announce";
 import { showAnnounceController } from "../../controllers/announce/get";
 import { updateAnnounceController } from "../../controllers/announce/update";
+import { softdeleteAnnounceController } from "../../controllers/announce/delete";
 
 export const announceRoutes = Router();
 
@@ -25,4 +26,10 @@ announceRoutes.patch(
   authValidationMiddleware,
   validateSchemaMiddleware(schemaUpdateAnnounce),
   updateAnnounceController
+);
+
+announceRoutes.delete(
+  "/:id",
+  authValidationMiddleware,
+  softdeleteAnnounceController
 );

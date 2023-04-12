@@ -7,17 +7,6 @@ import { Model } from "../../entities/entities/model";
 import { AppError } from "../../errors/appError";
 import { IAnnounceRequest, iUserToken } from "../../interfaces/announce";
 
-async function findOrCreate(repository, where, data) {
-  let item = await repository.findOne({ where });
-
-  if (!item) {
-    item = repository.create(data);
-    await repository.save(item);
-  }
-
-  return item;
-}
-
 export const updateAnnounceService = async (
   id_ann: number,
   announce: IAnnounceRequest,
@@ -37,36 +26,48 @@ export const updateAnnounceService = async (
   const { owner, mark, model, fuel, color, ...updateData } = announce;
 
   if (mark) {
-    const markRepository = AppDataSource.getRepository(Mark);
-    annExist.mark = await findOrCreate(
-      markRepository,
-      { name: String(mark) },
-      { name: String(mark) }
-    );
+    let markExist = await AppDataSource.getRepository(Mark).findOne({
+      where: { name: String(mark) },
+    });
+    if (!markExist) {
+      markExist = new Mark();
+      markExist.name = String(mark);
+      await AppDataSource.getRepository(Mark).save(markExist);
+    }
+    annExist.mark = markExist;
   }
   if (model) {
-    const modelRepository = AppDataSource.getRepository(Model);
-    annExist.model = await findOrCreate(
-      modelRepository,
-      { name: String(model) },
-      { name: String(model) }
-    );
+    let modelExist = await AppDataSource.getRepository(Model).findOne({
+      where: { name: String(model) },
+    });
+    if (!modelExist) {
+      modelExist = new Model();
+      modelExist.name = String(model);
+      await AppDataSource.getRepository(Model).save(modelExist);
+    }
+    annExist.model = modelExist;
   }
   if (fuel) {
-    const fuelRepository = AppDataSource.getRepository(Fuel);
-    annExist.fuel = await findOrCreate(
-      fuelRepository,
-      { type: String(fuel) },
-      { type: String(fuel) }
-    );
+    let fuelExist = await AppDataSource.getRepository(Fuel).findOne({
+      where: { type: String(fuel) },
+    });
+    if (!fuelExist) {
+      fuelExist = new Fuel();
+      fuelExist.type = String(fuel);
+      await AppDataSource.getRepository(Fuel).save(fuelExist);
+    }
+    annExist.fuel = fuelExist;
   }
   if (color) {
-    const colorRepository = AppDataSource.getRepository(Color);
-    annExist.color = await findOrCreate(
-      colorRepository,
-      { name: String(color) },
-      { name: String(color) }
-    );
+    let colorExist = await AppDataSource.getRepository(Color).findOne({
+      where: { name: String(color) },
+    });
+    if (!colorExist) {
+      colorExist = new Color();
+      colorExist.name = String(color);
+      await AppDataSource.getRepository(Color).save(colorExist);
+    }
+    annExist.color = colorExist;
   }
 
   Object.assign(annExist, updateData);
