@@ -1,10 +1,10 @@
 import "express-async-errors";
 import express from "express";
-import "reflect-metadata";
 import cors from "cors";
 import { userRoutes } from "./routes/user/routes";
 import { loginRoutes } from "./routes/login/routes";
 import { announceRoutes } from "./routes/announce/routes";
+import { handleError } from "./errors/handleErrors";
 
 export const app = express();
 
@@ -14,3 +14,5 @@ app.use(express.json());
 app.use("/user", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/announce", announceRoutes);
+
+app.use(handleError);
