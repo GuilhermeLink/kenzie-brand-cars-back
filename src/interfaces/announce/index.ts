@@ -19,6 +19,12 @@ export interface IAnnounceRequest {
   comments?: iComment[];
 }
 
+export interface iUserToken {
+  id: string;
+  admin: boolean;
+  user: iUserRequest;
+}
+
 export interface iMark {
   id?: number;
   name: string;

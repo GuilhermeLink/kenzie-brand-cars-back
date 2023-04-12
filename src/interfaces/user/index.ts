@@ -1,6 +1,7 @@
 import { IAnnounceRequest, iComment } from "../announce";
 
 export interface iUserRequest {
+  id?: string;
   name: string;
   email: string;
   password: string;

@@ -13,10 +13,10 @@ export const showAnnounceService = async () => {
 
   return plainAnn.map((a) => ({
     ...a,
-    mark: a.mark.name,
-    model: a.model.name,
-    fuel: a.fuel.type,
-    color: a.color.name,
+    mark: a.mark ? a.mark.name : null,
+    model: a.model ? a.model.name : null,
+    fuel: a.fuel ? a.fuel.type : null,
+    color: a.color ? a.color.name : null,
     owner: {
       name: a.owner.name,
       email: a.owner.email,
