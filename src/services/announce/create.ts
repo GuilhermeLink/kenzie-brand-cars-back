@@ -18,33 +18,64 @@ export const createAnnounceService = async (
   const fuelRep = AppDataSource.getRepository(Fuel);
   const colorRep = AppDataSource.getRepository(Color);
 
-  const mark =
-    (await markRep.findOne({ where: { name: data.mark.name } })) ||
-    markRep.create(data.mark);
-  if (!mark.id) {
-    await markRep.save(mark);
-  }
+  const [mark, model, fuel, color] = await Promise.all([
+    (async () => {
+      const mark_exist = await markRep.findOne({
+        where: { name: String(data.mark) },
+      });
 
-  const model =
-    (await modelRep.findOne({ where: { name: data.model.name } })) ||
-    modelRep.create(data.model);
-  if (!model.id) {
-    await modelRep.save(model);
-  }
+      if (mark_exist) {
+        return mark_exist;
+      }
 
-  const fuel =
-    (await fuelRep.findOne({ where: { type: data.fuel.type } })) ||
-    fuelRep.create(data.fuel);
-  if (!fuel.id) {
-    await fuelRep.save(fuel);
-  }
+      const mark = markRep.create({ name: String(data.mark) });
+      await markRep.save(mark);
 
-  const color =
-    (await colorRep.findOne({ where: { name: data.color.name } })) ||
-    colorRep.create(data.color);
-  if (!color.id) {
-    await colorRep.save(color);
-  }
+      return mark;
+    })(),
+    (async () => {
+      const model_exist = await modelRep.findOne({
+        where: { name: String(data.model) },
+      });
+
+      if (model_exist) {
+        return model_exist;
+      }
+
+      const model = modelRep.create({ name: String(data.model) });
+      await modelRep.save(model);
+
+      return model;
+    })(),
+    (async () => {
+      const fuel_exist = await fuelRep.findOne({
+        where: { type: String(data.fuel) },
+      });
+
+      if (fuel_exist) {
+        return fuel_exist;
+      }
+
+      const fuel = fuelRep.create({ type: String(data.fuel) });
+      await fuelRep.save(fuel);
+
+      return fuel;
+    })(),
+    (async () => {
+      const color_exist = await colorRep.findOne({
+        where: { name: String(data.color) },
+      });
+
+      if (color_exist) {
+        return color_exist;
+      }
+
+      const color = colorRep.create({ name: String(data.color) });
+      await colorRep.save(color);
+
+      return color;
+    })(),
+  ]);
 
   const announceData = { ...data, mark, model, fuel, color, owner };
   const announce = annRep.create(announceData);
