@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { AppDataSource } from "../../data-source";
 import { Announce } from "../../entities/entities/announce";
 import { Color } from "../../entities/entities/color";
@@ -72,5 +73,5 @@ export const updateAnnounceService = async (
 
   Object.assign(annExist, updateData);
   const updatedData = await annRep.save(annExist);
-  return updatedData;
+  return instanceToPlain(updatedData) as IAnnounceRequest[];
 };
