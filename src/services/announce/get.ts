@@ -6,6 +6,7 @@ import { IAnnounceRequest } from "../../interfaces/announce";
 export const showAnnounceService = async () => {
   const annRep = AppDataSource.getRepository(Announce);
   const announce = await annRep.find({
+    where: { softDeleted: false },
     relations: ["mark", "model", "fuel", "color", "owner"],
   });
 

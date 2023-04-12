@@ -73,6 +73,9 @@ export class Announce {
   @Column({ nullable: true })
   deletedAt: Date;
 
+  @Column({ default: false })
+  softDeleted: boolean;
+
   @Column({ default: true })
   publishedAt: boolean;
 
