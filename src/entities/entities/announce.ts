@@ -61,7 +61,7 @@ export class Announce {
   @JoinColumn()
   gallery: Gallery;
 
-  @OneToMany(() => Comment, (comment) => comment.announce)
+  @OneToMany(() => Comment, (comment) => comment.announce, { cascade: true })
   comments: Comment[];
 
   @Column({ default: () => "CURRENT_TIMESTAMP" })
