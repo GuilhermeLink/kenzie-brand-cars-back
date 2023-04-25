@@ -51,10 +51,10 @@ export class User {
   @JoinColumn()
   address: Address;
 
-  @OneToMany(() => Announce, (announce) => announce.owner)
+  @OneToMany(() => Announce, (announce) => announce.owner, { cascade: true })
   announces: Announce[];
 
-  @OneToMany(() => Comment, (comment) => comment.user)
+  @OneToMany(() => Comment, (comment) => comment.user, { cascade: true })
   comments: Comment[];
 
   @BeforeInsert()

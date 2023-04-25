@@ -62,3 +62,32 @@ export const schemaLogin = yup.object().shape({
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
 });
+
+export const schemaUpdateAccount = yup.object().shape({
+  name: yup.string().min(2, "Name must be at least 2 characters"),
+  email: yup.string().email("Invalid email format"),
+  password: yup.string().min(8, "Password must be at least 8 characters"),
+  cpf: yup
+    .string()
+    .min(11, "CPF must be 11 characters")
+    .max(11, "CPF must be 11 characters"),
+  phone: yup.string().min(10, "Phone must be at least 10 characters"),
+  birthDate: yup.date(),
+  description: yup
+    .string()
+    .min(10, "Description must be at least 10 characters"),
+  type: yup
+    .string()
+    .oneOf(["buyer", "seller"], "Type must be either 'buyer' or 'seller'"),
+  admin: yup.boolean(),
+
+  address: yup.object().shape({
+    street: yup.string(),
+    number: yup.number().positive("Number must be a positive value"),
+    complement: yup.string(),
+    neighborhood: yup.string(),
+    city: yup.string(),
+    state: yup.string().length(2, "State must be 2 characters"),
+    zipCode: yup.string().length(5, "Zip code must be 5 characters"),
+  }),
+});

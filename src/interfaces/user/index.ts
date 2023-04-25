@@ -32,3 +32,16 @@ export interface iUserLogin {
   email: string;
   password: string;
 }
+
+export interface iUserUpdateRequest {
+  name?: string;
+  email?: string;
+  password?: string;
+  cpf?: string;
+  phone?: string;
+  birthDate?: Date;
+  description?: string;
+  type?: string;
+  admin?: boolean;
+  address?: iAddress;
+}
