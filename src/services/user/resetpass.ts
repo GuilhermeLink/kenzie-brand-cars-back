@@ -1,11 +1,27 @@
-import { iUserToken } from '../../interfaces/userToken';
-import { sendForgotPasswordEmail } from './forgotPassword';
-import { resetPassword } from './resetPassword';
+import { AppDataSource } from "../../data-source";
+import { User } from "../../entities/entities/user";
+import { AppError } from "../../errors/appError";
+import { iUserRequest } from "../../interfaces/user";
+import { instanceToPlain } from "class-transformer";
+import {randomUUID} from "node:crypto"
+import { emailService } from "../../utils/sendEmail";
 
-export async function forgotPassword(email: string): Promise<void> {
-  await sendForgotPasswordEmail(email);
-}
+export const sendUserResetPass = async (email: string, protocol: string, host: string) => {
+  const userRep = AppDataSource.getRepository(User);
 
-export async function resetPassword(token: string, password: string): Promise<void> {
-  await resetPassword(token, password);
-}
+  const user = await userRep.findOne({
+      where: {email}
+  })
+
+  if(!user){
+      throw new AppError("User Not Found!", 404)  
+  }
+
+  const resetToken = randomUUID()
+
+  await userRep.update({ where: {email}, data: {reset_token: resetToken} })
+
+  const resetPassword = emailService.resetPassword(email, user.name, protocol, host, resetToken)
+
+  await emailService.sendEmail(resetPassword)
+};

@@ -5,6 +5,7 @@ import { createUserController } from "../../controllers/user/create";
 import { updateUserController } from "../../controllers/user/update";
 import { authValidationMiddleware } from "../../middlewares/auth";
 import { deleteUserController } from "../../controllers/user/delete";
+import { resetUserPasswordController } from "../../controllers/user/resetpass";
 
 export const userRoutes = Router();
 
@@ -23,5 +24,4 @@ userRoutes.patch(
 
 userRoutes.delete("/:id", authValidationMiddleware, deleteUserController);
 
-userRoutes.post('/forgot_password', forgotPasswordController);
-userRoutes.post('/reset_password', resetPasswordController);
+userRoutes.post("/reset_password", resetUserPasswordController);

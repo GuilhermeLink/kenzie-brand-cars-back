@@ -30,6 +30,9 @@ export class User {
   password: string;
 
   @Column()
+  reset_token?: string;
+
+  @Column()
   cpf: string;
 
   @Column()
