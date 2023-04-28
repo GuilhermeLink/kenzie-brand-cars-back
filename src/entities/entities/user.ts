@@ -29,8 +29,8 @@ export class User {
   @Exclude()
   password: string;
 
-  @Column()
-  reset_token?: string;
+  @Column({ nullable: true })
+  reset_token: string;
 
   @Column()
   cpf: string;

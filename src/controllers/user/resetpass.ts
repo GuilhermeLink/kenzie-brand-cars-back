@@ -1,13 +1,11 @@
 import { Request, Response } from 'express';
-import { sendUserResetPass } from '../../services/user/resetpass';
-
+import { userResetPass } from '../../services/user/resetpass';
 
 export const resetUserPasswordController = async (req: Request, res: Response) => {
-  const { email } = req.body
-  const { protocol } = req
-  const host = req.get("host")
+  const { password } = req.body
+  const { token } = req.params
 
-  await sendUserResetPass(email, protocol, host);
+  await userResetPass(password, token)
 
-  return res.status(200).json({ message: 'Password reset successfully.' });
-}
+  return res.status(200).json({ message: 'Password changed sucessfully.' });
+};
