@@ -5,8 +5,6 @@ import { createUserController } from "../../controllers/user/create";
 import { updateUserController } from "../../controllers/user/update";
 import { authValidationMiddleware } from "../../middlewares/auth";
 import { deleteUserController } from "../../controllers/user/delete";
-import { sendResetEmailController } from "../../controllers/user/sendemails";
-import { resetUserPasswordController } from "../../controllers/user/resetpass";
 
 export const userRoutes = Router();
 
@@ -15,10 +13,6 @@ userRoutes.post(
   validateSchemaMiddleware(schemaCreateAccount),
   createUserController
 );
-
-userRoutes.post("/reset_password", authValidationMiddleware, sendResetEmailController);
-
-userRoutes.post("/reset_password/:token", authValidationMiddleware, resetUserPasswordController);
 
 userRoutes.patch(
   "/:id",
@@ -29,3 +23,5 @@ userRoutes.patch(
 
 userRoutes.delete("/:id", authValidationMiddleware, deleteUserController);
 
+userRoutes.post('/forgot_password', forgotPasswordController);
+userRoutes.post('/reset_password', resetPasswordController);

@@ -45,9 +45,3 @@ export interface iUserUpdateRequest {
   admin?: boolean;
   address?: iAddress;
 }
-
-export interface iSendEmailRequest {
-  to: string,
-  subject: string,
-  text: string
-}

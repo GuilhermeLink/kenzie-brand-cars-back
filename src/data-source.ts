@@ -12,8 +12,6 @@ import { Fuel } from "./entities/entities/fuel";
 import { Gallery } from "./entities/entities/galery";
 import { Mark } from "./entities/entities/mark";
 import { Model } from "./entities/entities/model";
-import { Newcolum21682690939151 } from "./migrations/1682690939151-newcolum2";
-
 
 const dataSourceConfig = (): DataSourceOptions => {
   return {
@@ -35,7 +33,7 @@ const dataSourceConfig = (): DataSourceOptions => {
       Mark,
       Model,
     ],
-    migrations: [Newcolum21682690939151],
+    migrations: ["src/migrations/*.ts"],
     synchronize: false,
   };
 };
