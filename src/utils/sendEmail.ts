@@ -14,7 +14,7 @@ class SendEmailService {
         })
 
         await transporter.sendMail({
-            from: "kikuroco@gmail.com",
+            from: "virardicamila@gmail.com",
             to,
             subject,
             html: text
@@ -29,11 +29,9 @@ class SendEmailService {
     resetPassword(userMail: string, userName: string, protocol: string, host: string, resetToken:string){
         const mailGenerator = new Mailgen({
             theme: 'default',
-            product: {
-                
+            product: {               
                 name: 'Kenzie Brand Cars',
-                link: `${protocol}://${host}`
-                
+                link: `${protocol}://${host}`                
             }
         });
 
@@ -46,7 +44,7 @@ class SendEmailService {
                     button: {
                         color: '#DC4D2F',
                         text: 'Reset your password',
-                        link: `${protocol}://${host}/user/resetPassword/${resetToken}`
+                        link: `${protocol}://${host}/user/reset_password/${resetToken}`
                     }
                 },
                 outro: 'If you did not request a password reset, no further action is required on your part.'

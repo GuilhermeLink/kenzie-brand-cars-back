@@ -18,7 +18,7 @@ userRoutes.post(
 
 userRoutes.post("/reset_password", authValidationMiddleware, sendResetEmailController);
 
-userRoutes.post("/reset_password/:token", authValidationMiddleware, resetUserPasswordController);
+userRoutes.patch("/reset_password/:token", authValidationMiddleware, resetUserPasswordController);
 
 userRoutes.patch(
   "/:id",
