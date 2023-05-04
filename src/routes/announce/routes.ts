@@ -6,7 +6,7 @@ import {
   schemaCreateAnnounce,
   schemaUpdateAnnounce,
 } from "../../schemas/announce";
-import { showAnnounceController } from "../../controllers/announce/get";
+import { showAnnounceController, showAnnounceIdController } from "../../controllers/announce/get";
 import { updateAnnounceController } from "../../controllers/announce/update";
 import { softdeleteAnnounceController } from "../../controllers/announce/delete";
 
@@ -20,6 +20,9 @@ announceRoutes.post(
 );
 
 announceRoutes.get("", authValidationMiddleware, showAnnounceController);
+
+announceRoutes.get("/:id", authValidationMiddleware, showAnnounceIdController);
+
 
 announceRoutes.patch(
   "/:id",

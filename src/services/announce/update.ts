@@ -9,7 +9,7 @@ import { AppError } from "../../errors/appError";
 import { IAnnounceRequest, iUserToken } from "../../interfaces/announce";
 
 export const updateAnnounceService = async (
-  id_ann: number,
+  id_ann: string,
   announce: IAnnounceRequest,
   token: iUserToken
 ) => {

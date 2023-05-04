@@ -19,7 +19,7 @@ import { Comment } from "./comment";
 @Entity()
 export class Announce {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column({ nullable: false })
   year: number;
