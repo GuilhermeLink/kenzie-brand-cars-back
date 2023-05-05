@@ -22,6 +22,7 @@ announceRoutes.post(
 
 announceRoutes.get("", authValidationMiddleware, showAnnounceController);
 announceRoutes.get("/:id", authValidationMiddleware, showSpecifiAnnounceController)
+
 announceRoutes.patch(
   "/:id",
   authValidationMiddleware,

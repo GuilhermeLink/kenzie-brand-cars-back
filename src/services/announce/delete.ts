@@ -4,7 +4,7 @@ import { AppError } from "../../errors/appError";
 import { iUserToken } from "../../interfaces/announce";
 
 export const softdeleteAnnounceService = async (
-  id_ann: number,
+  id_ann: string,
   token: iUserToken
 ) => {
   const annRep = AppDataSource.getRepository(Announce);

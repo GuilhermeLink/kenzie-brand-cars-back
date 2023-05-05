@@ -4,7 +4,7 @@ import { Announce } from "../../entities/entities/announce";
 import { AppError } from "../../errors/appError";
 import { IAnnounceRequest } from "../../interfaces/announce";
 
-export const showSpecifiAnnounceService = async (id: number) => {
+export const showSpecifiAnnounceService = async (id: string) => {
   const annRep = AppDataSource.getRepository(Announce);
   const announceFound = await annRep.find({
     where: { id: id },

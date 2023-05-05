@@ -2,6 +2,7 @@ import { instanceToPlain } from "class-transformer";
 import { AppDataSource } from "../../data-source";
 import { Announce } from "../../entities/entities/announce";
 import { IAnnounceRequest } from "../../interfaces/announce";
+import { AppError } from "../../errors/appError";
 
 export const showAnnounceService = async () => {
   const annRep = AppDataSource.getRepository(Announce);
@@ -30,3 +31,20 @@ export const showAnnounceService = async () => {
     },
   }));
 };
+
+
+export const showAnnounceIdService = async (id: string) => {
+  const annRep = AppDataSource.getRepository(Announce)
+
+  const announce = await annRep.findOne({
+      where: {
+          id: id
+      }
+  })
+
+  if(!announce){
+      throw new AppError('Invalid Id', 404)
+  }
+
+  return announce
+}
