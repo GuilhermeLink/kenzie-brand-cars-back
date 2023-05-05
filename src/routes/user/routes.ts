@@ -28,4 +28,3 @@ userRoutes.patch(
 );
 
 userRoutes.delete("/:id", authValidationMiddleware, deleteUserController);
-
