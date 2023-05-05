@@ -9,6 +9,7 @@ import {
 import { showAnnounceController } from "../../controllers/announce/get";
 import { updateAnnounceController } from "../../controllers/announce/update";
 import { softdeleteAnnounceController } from "../../controllers/announce/delete";
+import { showSpecifiAnnounceController } from "../../controllers/announce/getSpecificId";
 
 export const announceRoutes = Router();
 
@@ -20,7 +21,7 @@ announceRoutes.post(
 );
 
 announceRoutes.get("", authValidationMiddleware, showAnnounceController);
-
+announceRoutes.get("/:id", authValidationMiddleware, showSpecifiAnnounceController)
 announceRoutes.patch(
   "/:id",
   authValidationMiddleware,

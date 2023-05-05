@@ -23,5 +23,5 @@ userRoutes.patch(
 
 userRoutes.delete("/:id", authValidationMiddleware, deleteUserController);
 
-userRoutes.post('/forgot_password', forgotPasswordController);
-userRoutes.post('/reset_password', resetPasswordController);
+// userRoutes.post('/forgot_password', forgotPasswordController);
+// userRoutes.post('/reset_password', resetPasswordController);
