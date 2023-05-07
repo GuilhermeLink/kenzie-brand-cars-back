@@ -6,7 +6,7 @@ import { Exclude } from "class-transformer";
 export class Fuel {
   @PrimaryGeneratedColumn()
   @Exclude()
-  id: number;
+  id: string;
 
   @Column()
   type: string;

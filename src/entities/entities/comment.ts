@@ -2,18 +2,26 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { User } from "./user";
 import { Announce } from "./announce";
 import { Exclude } from "class-transformer";
+import { iUserRequest } from "../../interfaces/user";
+
 @Entity()
 export class Comment {
   @PrimaryGeneratedColumn()
   @Exclude()
-  id: number;
+  id?: string;
 
   @Column()
-  content: string;
+  announceId: string;
 
-  @ManyToOne(() => User, (user) => user.comments)
-  user: User;
+  @Column()
+  text: string;
+
+  @Column()
+  createdAt: Date;
 
   @ManyToOne(() => Announce, (announce) => announce.comments)
-  announce: Announce;
+  announces: Announce;
+
+  @Column("simple-json")
+  author: iUserRequest;
 }

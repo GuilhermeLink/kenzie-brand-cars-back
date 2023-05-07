@@ -5,6 +5,8 @@ export interface iUserRequest {
   name: string;
   email: string;
   password: string;
+  reset_token: string;
+  hashPassword: string;
   cpf: string;
   phone: string;
   birthDate: Date;
@@ -18,12 +20,13 @@ export interface iUserRequest {
 }
 
 export interface iAddress {
+  id?: string;
+  state: string;
+  city: string;
+  neighborhood: string;
   street: string;
   number: number;
   complement: string;
-  neighborhood: string;
-  city: string;
-  state: string;
   zipCode: string;
   user?: iUserRequest;
 }

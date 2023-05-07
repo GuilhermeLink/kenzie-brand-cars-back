@@ -17,7 +17,7 @@ import { getRounds, hashSync } from "bcryptjs";
 @Entity()
 export class User {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+  id?: string;
 
   @Column()
   name: string;
@@ -48,16 +48,16 @@ export class User {
   type: string;
 
   @Column({ default: false })
-  admin: boolean;
+  admin?: boolean;
 
   @OneToOne(() => Address, (address) => address.user, { cascade: true })
   @JoinColumn()
   address: Address;
 
   @OneToMany(() => Announce, (announce) => announce.owner, { cascade: true })
-  announces: Announce[];
+  announces?: Announce[];
 
-  @OneToMany(() => Comment, (comment) => comment.user, { cascade: true })
+  @OneToMany(() => Comment, (comment) => comment.author, { cascade: true })
   comments: Comment[];
 
   @BeforeInsert()

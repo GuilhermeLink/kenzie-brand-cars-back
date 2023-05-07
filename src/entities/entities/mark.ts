@@ -5,7 +5,7 @@ import { Exclude } from "class-transformer";
 export class Mark {
   @PrimaryGeneratedColumn()
   @Exclude()
-  id: number;
+  id: string;
 
   @Column()
   name: string;

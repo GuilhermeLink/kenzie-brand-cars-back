@@ -6,11 +6,11 @@ import { Exclude } from "class-transformer";
 export class Gallery {
   @PrimaryGeneratedColumn()
   @Exclude()
-  id: number;
+  id: string;
 
   @Column("simple-array")
   images: string[];
 
   @OneToOne(() => Announce, (announce) => announce.gallery)
-  announce: Announce;
+  announces: Announce;
 }

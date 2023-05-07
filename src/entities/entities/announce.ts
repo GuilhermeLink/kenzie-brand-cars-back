@@ -40,7 +40,7 @@ export class Announce {
   image: string;
 
   @Column({ default: false })
-  withinFipe: boolean;
+  withinFipe?: boolean;
 
   @ManyToOne(() => User, (user) => user.announces)
   owner: User;
@@ -57,12 +57,12 @@ export class Announce {
   @ManyToOne(() => Color, (color) => color.announces)
   color: Color;
 
-  @OneToOne(() => Gallery, (gallery) => gallery.announce, { cascade: true })
+  @OneToOne(() => Gallery, (gallery) => gallery.announces, { cascade: true })
   @JoinColumn()
   gallery: Gallery;
 
-  @OneToMany(() => Comment, (comment) => comment.announce, { cascade: true })
-  comments: Comment[];
+  @OneToMany(() => Comment, (comment) => comment.announces, { cascade: true })
+  comments?: Comment[];
 
   @Column({ default: () => "CURRENT_TIMESTAMP" })
   createdAt: Date;

@@ -1,3 +1,4 @@
+import { DeepPartial } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/entities/user";
 import { AppError } from "../../errors/appError";
@@ -13,7 +14,9 @@ export async function createUserService(
   const existingUser = await userRep.findOne({ where: { email } });
   if (existingUser) throw new AppError("Email already exists!", 409);
 
-  const user = userRep.create(data);
+  const user = userRep.create(
+    Object.assign(new User(), data) as DeepPartial<User>
+  );
   await userRep.save(user);
 
   const plainUser = instanceToPlain(user) as iUserRequest;
