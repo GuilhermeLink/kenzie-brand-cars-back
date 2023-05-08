@@ -1,6 +1,11 @@
+import { Color } from "../../entities/entities/color";
+import { Fuel } from "../../entities/entities/fuel";
+import { Mark } from "../../entities/entities/mark";
+import { Model } from "../../entities/entities/model";
 import { iUserRequest } from "../user";
 
 export interface IAnnounceRequest {
+  id: string;
   year: number;
   km: number;
   price_fipe: number;
@@ -8,13 +13,17 @@ export interface IAnnounceRequest {
   description: string;
   image: string;
   withinFipe?: boolean;
-
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
+  softDeleted: boolean;
+  publishedAt: boolean;
+  checkFipeRange: void;
   owner: iUserRequest;
-
-  mark: iMark;
-  model: iModel;
-  fuel: iFuel;
-  color: iColor;
+  mark: Mark;
+  model: Model;
+  fuel: Fuel;
+  color: Color;
   gallery: iGallery;
   comments?: iComment[];
 }
@@ -26,38 +35,47 @@ export interface iUserToken {
 }
 
 export interface iMark {
-  id?: number;
+  id?: string;
   name: string;
   announces?: IAnnounceRequest[];
 }
 
 export interface iModel {
-  id?: number;
+  id?: string;
   name: string;
   announces?: IAnnounceRequest[];
 }
 
 export interface iFuel {
-  id?: number;
+  id?: string;
   type: string;
   announces?: IAnnounceRequest[];
 }
 
 export interface iColor {
-  id?: number;
+  id?: string;
   name: string;
   announces?: IAnnounceRequest[];
 }
 
 export interface iGallery {
-  id?: number;
+  id?: string;
   images: string[];
   announces?: IAnnounceRequest[];
 }
 
 export interface iComment {
-  id?: number;
-  content: string;
-  user: iUserRequest;
+  id?: string;
+  announceId: string;
+  text: string;
+  createdAt: Date;
+  author: iUserRequest;
   announces?: IAnnounceRequest[];
+}
+
+export interface ICommentRequest {
+  id: string;
+  text: string;
+  author: iUserRequest;
+  createdAt: Date;
 }

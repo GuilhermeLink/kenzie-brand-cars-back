@@ -9,7 +9,7 @@ import { instanceToPlain } from "class-transformer";
 import { iUserRequest } from "../../interfaces/user";
 
 export const createAnnounceService = async (
-  data: IAnnounceRequest,
+  data: Announce,
   owner: iUserRequest
 ): Promise<IAnnounceRequest> => {
   const annRep = AppDataSource.getRepository(Announce);
@@ -78,6 +78,7 @@ export const createAnnounceService = async (
   ]);
 
   const announceData = { ...data, mark, model, fuel, color, owner };
+  
   const announce = annRep.create(announceData);
   await annRep.save(announce);
 

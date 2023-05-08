@@ -73,3 +73,9 @@ export const schemaUpdateAnnounce = yup.object().shape({
 
   publishedAt: yup.boolean().required(),
 });
+
+
+export const schemaCreateComment = yup.object().shape({
+  id_ann: yup.string().required(),
+  text: yup.string().required(),
+});

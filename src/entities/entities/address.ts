@@ -5,7 +5,7 @@ import { Exclude } from "class-transformer";
 export class Address {
   @PrimaryGeneratedColumn()
   @Exclude()
-  id: number;
+  id?: string;
 
   @Column()
   state: string;
@@ -29,5 +29,5 @@ export class Address {
   zipCode: string;
 
   @OneToOne(() => User, (user) => user.address)
-  user: User;
+  user?: User;
 }
