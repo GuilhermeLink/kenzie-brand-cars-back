@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 import { User } from "./user";
 import { Announce } from "./announce";
 import { Exclude } from "class-transformer";
@@ -11,9 +11,6 @@ export class Comment {
   id?: string;
 
   @Column()
-  announceId: string;
-
-  @Column()
   text: string;
 
   @Column()
@@ -23,5 +20,6 @@ export class Comment {
   announces: Announce;
 
   @ManyToOne(() => User, (user) => user.comments)
+  @JoinColumn({ name: 'author_id' })
   author: User;
 }

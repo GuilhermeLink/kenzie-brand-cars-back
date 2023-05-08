@@ -8,5 +8,5 @@ export const createLoginController = async (
 ) => {
   const data: iUserLogin = request.body;
   const token = await createLoginService(data);
-  return response.status(200).json({ token });
+  return response.status(200).json(token);
 };
