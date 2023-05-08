@@ -22,6 +22,6 @@ export class Comment {
   @ManyToOne(() => Announce, (announce) => announce.comments)
   announces: Announce;
 
-  @Column("simple-json")
-  author: iUserRequest;
+  @ManyToOne(() => User, (user) => user.comments)
+  author: User;
 }

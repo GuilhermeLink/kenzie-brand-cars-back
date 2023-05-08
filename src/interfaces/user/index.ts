@@ -1,3 +1,5 @@
+import { Announce } from "../../entities/entities/announce";
+import { Comment } from "../../entities/entities/comment";
 import { IAnnounceRequest, iComment } from "../announce";
 
 export interface iUserRequest {
@@ -6,7 +8,7 @@ export interface iUserRequest {
   email: string;
   password: string;
   reset_token: string;
-  hashPassword: string;
+  hashPassword: () => void;
   cpf: string;
   phone: string;
   birthDate: Date;
@@ -15,8 +17,8 @@ export interface iUserRequest {
   admin?: boolean;
   address: iAddress;
 
-  announces?: IAnnounceRequest[];
-  comments?: iComment[];
+  announces?: Announce[];
+  comments?: Comment[];
 }
 
 export interface iAddress {

@@ -76,6 +76,6 @@ export const schemaUpdateAnnounce = yup.object().shape({
 
 
 export const schemaCreateComment = yup.object().shape({
-  announceId: yup.string().required(),
-  content: yup.string().required(),
+  id_ann: yup.string().required(),
+  text: yup.string().required(),
 });

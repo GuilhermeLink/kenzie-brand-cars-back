@@ -3,40 +3,25 @@ import { AppDataSource } from "../../data-source";
 import { AppError } from "../../errors/appError";
 import { ICommentRequest, iUserToken } from "../../interfaces/announce";
 import { Announce } from "../../entities/entities/announce";
+import { User } from "../../entities/entities/user";
 
 export const createCommentService = async (
   id_ann: string,
-  comment: ICommentRequest,
+  comment: string,
   token: iUserToken
 ) => {
   const commentRepo = AppDataSource.getRepository(Comment);
+  const commentUser = AppDataSource.getRepository(User);
   const annExist = await AppDataSource.getRepository(Announce).findOne({
     where: { id: id_ann },
-    relations: ["owner", "mark", "model", "fuel", "color"],
   });
 
   if (!annExist) throw new AppError("Announce not found", 404);
-
-  const newComment = new Comment();
-  newComment.text = comment.text;
-  newComment.author = {
-    id: token.user.id,
-    name: token.user.name,
-    email: token.user.email,
-    cpf: token.user.cpf,
-    phone: token.user.phone,
-    birthDate: token.user.birthDate,
-    description: token.user.description,
-    type: token.user.type,
-    admin: token.user.admin,
-    address: token.user.address,
-    password: token.user.password,
-    hashPassword: token.user.hashPassword,
-    reset_token: token.user.reset_token
-  };
-  newComment.announce = annExist;
-
-  const createdComment = await commentRepo.save(newComment);
+  console.log(comment)
+  const currentUser = await commentUser.findOne({where: {id: token.id}})
+  const createdAt = new Date();
+  const createdComment = commentRepo.create({announceId: id_ann, author: currentUser, text: comment, createdAt})
+  await commentRepo.save(createdComment)
 
   return createdComment;
 };

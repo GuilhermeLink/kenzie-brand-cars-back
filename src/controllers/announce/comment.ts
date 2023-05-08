@@ -3,14 +3,15 @@ import { createCommentService, listCommentsService } from "../../services/announ
 import { iUserToken } from "../../interfaces/announce";
 
 interface AuthenticatedRequest extends Request {
-    user: iUserToken;
+    token: iUserToken;
   }
   
   export const createCommentController = async (req: AuthenticatedRequest, res: Response) => {
     try {
-      const { id_ann, comment } = req.body;
-      const token = req.user;
-      const createdComment = await createCommentService(id_ann, comment, token);
+      const { id_ann, text } = req.body;
+      const token = req.token;
+
+      const createdComment = await createCommentService(id_ann, text, token);
       res.status(201).json(createdComment);
     } catch (error) {
       res.status(error.status || 500).json({ message: error.message });

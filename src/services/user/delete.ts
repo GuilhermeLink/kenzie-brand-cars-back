@@ -21,7 +21,7 @@ export const deleteUserService = async (uuid: string, token: iUserToken) => {
   });
   await announceRep.remove(announces);
 
-  const comments = await commentRep.find({ where: { user: { id: exist.id } } });
+  const comments = await commentRep.find({ where: { author: {id: exist.id} } });
   await commentRep.remove(comments);
 
   // Removendo o usuário

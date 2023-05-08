@@ -1,3 +1,7 @@
+import { Color } from "../../entities/entities/color";
+import { Fuel } from "../../entities/entities/fuel";
+import { Mark } from "../../entities/entities/mark";
+import { Model } from "../../entities/entities/model";
 import { iUserRequest } from "../user";
 
 export interface IAnnounceRequest {
@@ -16,10 +20,10 @@ export interface IAnnounceRequest {
   publishedAt: boolean;
   checkFipeRange: void;
   owner: iUserRequest;
-  mark: iMark;
-  model: iModel;
-  fuel: iFuel;
-  color: iColor;
+  mark: Mark;
+  model: Model;
+  fuel: Fuel;
+  color: Color;
   gallery: iGallery;
   comments?: iComment[];
 }
@@ -62,19 +66,16 @@ export interface iGallery {
 
 export interface iComment {
   id?: string;
-  content: string;
   announceId: string;
   text: string;
   createdAt: Date;
   author: iUserRequest;
-  user: iUserRequest;
   announces?: IAnnounceRequest[];
 }
 
 export interface ICommentRequest {
   id: string;
   text: string;
-  content: string;
   author: iUserRequest;
   createdAt: Date;
 }
