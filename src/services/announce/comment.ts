@@ -17,7 +17,6 @@ export const createCommentService = async (
   });
 
   if (!annExist) throw new AppError("Announce not found", 404);
-  console.log(comment)
   const currentUser = await commentUser.findOne({where: {id: token.id}})
   const createdAt = new Date();
   const createdComment = commentRepo.create({announces: annExist, author: currentUser, text: comment, createdAt})

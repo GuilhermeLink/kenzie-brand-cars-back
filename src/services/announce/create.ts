@@ -7,6 +7,7 @@ import { Model } from "../../entities/entities/model";
 import { IAnnounceRequest } from "../../interfaces/announce";
 import { instanceToPlain } from "class-transformer";
 import { iUserRequest } from "../../interfaces/user";
+import { Year } from "../../entities/entities/year";
 
 export const createAnnounceService = async (
   data: Announce,
@@ -17,8 +18,9 @@ export const createAnnounceService = async (
   const modelRep = AppDataSource.getRepository(Model);
   const fuelRep = AppDataSource.getRepository(Fuel);
   const colorRep = AppDataSource.getRepository(Color);
+  const yearRep = AppDataSource.getRepository(Year)
 
-  const [mark, model, fuel, color] = await Promise.all([
+  const [mark, model, fuel, color, year] = await Promise.all([
     (async () => {
       const mark_exist = await markRep.findOne({
         where: { name: String(data.mark) },
@@ -75,9 +77,23 @@ export const createAnnounceService = async (
 
       return color;
     })(),
+    (async () => {
+      const year_exist = await fuelRep.findOne({
+        where: { type: String(data.year) },
+      });
+
+      if (year_exist) {
+        return year_exist;
+      }
+
+      const year = yearRep.create({ year: String(data.year) });
+      await yearRep.save(year);
+
+      return year;
+    })(),
   ]);
 
-  const announceData = { ...data, mark, model, fuel, color, owner };
+  const announceData = { ...data, mark, model, fuel, color, owner, year };
   
   const announce = annRep.create(announceData);
   await annRep.save(announce);

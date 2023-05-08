@@ -12,6 +12,7 @@ import { Fuel } from "./entities/entities/fuel";
 import { Gallery } from "./entities/entities/galery";
 import { Mark } from "./entities/entities/mark";
 import { Model } from "./entities/entities/model";
+import { Year } from "./entities/entities/year";
 
 const dataSourceConfig = (): DataSourceOptions => {
   return {
@@ -32,6 +33,7 @@ const dataSourceConfig = (): DataSourceOptions => {
       Gallery,
       Mark,
       Model,
+      Year
     ],
     migrations: ["src/migrations/*.ts"],
     synchronize: false,
