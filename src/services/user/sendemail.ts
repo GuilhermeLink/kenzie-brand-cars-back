@@ -3,9 +3,14 @@ import { User } from "../../entities/entities/user";
 import { AppError } from "../../errors/appError";
 import {randomUUID} from "node:crypto"
 import { emailService } from "../../utils/sendEmail";
+import validator from 'email-validator';
 
 export const sendMailResetPass = async (email: string, protocol: string, host: string) => {
   const userRep = AppDataSource.getRepository(User);
+
+  if (!validator.validate(email)) {
+    throw new AppError("Endereço de e-mail inválido", 400);
+  }
 
   const user = await userRep.findOne({
       where: {email}
