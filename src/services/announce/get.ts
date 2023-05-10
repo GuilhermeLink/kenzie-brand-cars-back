@@ -23,6 +23,7 @@ export const showAnnounceService = async () => {
     year: a.year ? a.year.year : null,
     owner: {
       name: a.owner.name,
+      id: a.owner.id,
       email: a.owner.email,
       cpf: a.owner.cpf,
       phone: a.owner.phone,
@@ -72,6 +73,7 @@ export const showFiltredAnnouncesService = async (payload: IFilterParams) => {
     color: a.color ? a.color.name : null,
     year: a.year ? a.year.year : null,
     owner: {
+      id: a.owner.id,
       name: a.owner.name,
       email: a.owner.email,
       cpf: a.owner.cpf,

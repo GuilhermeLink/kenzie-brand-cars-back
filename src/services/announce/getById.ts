@@ -8,7 +8,7 @@ export const showSpecifiAnnounceService = async (id: string) => {
   const annRep = AppDataSource.getRepository(Announce);
   const announceFound = await annRep.find({
     where: { id: id },
-    relations: ["mark", "model", "fuel", "color", "owner", "comments",'comments.author'],
+    relations: ["mark", "model", "fuel", "color", "owner", "comments",'comments.author', "year"],
   });
   if (!announceFound) {
     throw new AppError("Deu ruim", 404);
@@ -20,8 +20,10 @@ export const showSpecifiAnnounceService = async (id: string) => {
       model: a.model ? a.model.name : null,
       fuel: a.fuel ? a.fuel.type : null,
       color: a.color ? a.color.name : null,
+      year: a.year ? a.year.year : null,
       owner: {
         name: a.owner.name,
+        id: a.owner.id,
         email: a.owner.email,
         cpf: a.owner.cpf,
         phone: a.owner.phone,
