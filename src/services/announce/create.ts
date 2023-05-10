@@ -78,10 +78,10 @@ export const createAnnounceService = async (
       return color;
     })(),
     (async () => {
-      const year_exist = await fuelRep.findOne({
-        where: { type: String(data.year) },
+      const year_exist = await yearRep.findOne({
+        where: { year: data.year.year },
       });
-
+      console.log(year_exist)
       if (year_exist) {
         return year_exist;
       }

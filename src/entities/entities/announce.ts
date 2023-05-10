@@ -41,6 +41,7 @@ export class Announce {
   withinFipe?: boolean;
 
   @ManyToOne(() => User, (user) => user.announces)
+  @JoinColumn({ name: 'author_id' })
   owner: User;
 
   @ManyToOne(() => Mark, (mark) => mark.announces)
