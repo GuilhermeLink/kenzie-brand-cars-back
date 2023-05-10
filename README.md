@@ -622,10 +622,10 @@ status - 404
 	"message": "Announce not found"
 }
 
-```
-## ROTA FILTER
 
+## ROTA FILTER
 ```
+
 GET - /filter
 
 >retorno
