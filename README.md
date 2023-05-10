@@ -6,7 +6,7 @@
 npm install ou yarn install.
 
 * Para testar o conteudo do backend utilizar o comando:
-yarn run dev.
+yarn run dev ou npm run dev.
 
 
 
