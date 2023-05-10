@@ -47,7 +47,7 @@ export const schemaCreateAccount = yup.object().shape({
       .required("State is required"),
     zipCode: yup
       .string()
-      .length(5, "Zip code must be 5 characters")
+      .length(8, "Zip code must be 8 characters")
       .required("Zip code is required"),
   }),
 });
