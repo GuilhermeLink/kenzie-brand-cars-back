@@ -15,14 +15,12 @@ import { Fuel } from "./fuel";
 import { Color } from "./color";
 import { Gallery } from "./galery";
 import { Comment } from "./comment";
+import { Year } from "./year";
 
 @Entity()
 export class Announce {
   @PrimaryGeneratedColumn()
   id: string;
-
-  @Column({ nullable: false })
-  year: number;
 
   @Column()
   km: number;
@@ -56,6 +54,8 @@ export class Announce {
 
   @ManyToOne(() => Color, (color) => color.announces)
   color: Color;
+  @ManyToOne(()=> Year, (year) => year.announces)
+  year: Year
 
   @OneToOne(() => Gallery, (gallery) => gallery.announces, { cascade: true })
   @JoinColumn()

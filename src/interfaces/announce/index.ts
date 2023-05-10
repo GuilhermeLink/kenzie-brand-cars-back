@@ -2,11 +2,12 @@ import { Color } from "../../entities/entities/color";
 import { Fuel } from "../../entities/entities/fuel";
 import { Mark } from "../../entities/entities/mark";
 import { Model } from "../../entities/entities/model";
+import { Year } from "../../entities/entities/year";
 import { iUserRequest } from "../user";
 
 export interface IAnnounceRequest {
   id: string;
-  year: number;
+  year: Year;
   km: number;
   price_fipe: number;
   price: number;
@@ -27,7 +28,6 @@ export interface IAnnounceRequest {
   gallery: iGallery;
   comments?: iComment[];
 }
-
 export interface iUserToken {
   id: string;
   admin: boolean;

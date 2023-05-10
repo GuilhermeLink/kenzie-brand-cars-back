@@ -19,7 +19,6 @@ class SendEmailService {
             subject,
             html: text
         }).then(() => {
-            console.log("Email Sended With Sucess!")
         }).catch((error) => {
             console.log(error)
             throw new AppError("Email not sended, try again later!", 500)
