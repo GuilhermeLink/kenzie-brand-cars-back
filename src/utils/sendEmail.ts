@@ -26,6 +26,8 @@ class SendEmailService {
     }
 
     resetPassword(userMail: string, userName: string, protocol: string, host: string, resetToken:string){
+        console.log(host)
+        console.log(host)
         const mailGenerator = new Mailgen({
             theme: 'default',
             product: {               
@@ -43,7 +45,7 @@ class SendEmailService {
                     button: {
                         color: '#DC4D2F',
                         text: 'Reset your password',
-                        link: `${protocol}://${host}/user/reset_password/${resetToken}`
+                        link: `${protocol}://localhost:3000/user/reset_password/${resetToken}`
                     }
                 },
                 outro: 'If you did not request a password reset, no further action is required on your part.'
