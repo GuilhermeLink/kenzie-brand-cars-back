@@ -2,7 +2,6 @@
   "name": "kenzie-brand-cars",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate ./src/migrations/migration -d ./src/data-source.ts",
